@@ -19,7 +19,7 @@ do
                    gphoto2 --set-config shutterspeed=$i
                    gphoto2 --capture-image
                 else
-                   $rej = $rej+1   
+                   rej = $((rej+1))   
 		fi   
 	else
 	    gphoto2 --set-config shutterspeed=$i
@@ -40,7 +40,7 @@ do
  	           gphoto2 --set-config shutterspeed=$j
 	           gphoto2 --capture-image
 	        else
-	           $rej = $rej+1   
+	           rej = $((rej+1))   
 		fi
 	else
 	   gphoto2 --set-config shutterspeed=$j
@@ -51,6 +51,6 @@ do
 	echo "$(( duration - c )) seconds"
 done
 duration=$SECONDS
-echo "average EOS R8 $(((duration-a)/((55-14+1)*2+$rej))) fpm"
-
-
+echo $rej
+echo "Total $(( duration - a )) seconds"
+echo "average EOS R8 $(( ((55-14+1)*2+$rej)/(duration-a)*60 )) fpm"
