@@ -12,7 +12,8 @@ rej=0
 startno=0
 endno=40 ##4.0s
 frames=0
-for ((i=${startno}; i<=${endno}; i=i+2 ));
+step=2
+for ((i=${startno}; i<=${endno}; i=i+step ));
 do
 	b=$SECONDS
 	echo $i;
@@ -38,7 +39,7 @@ do
 	echo "$(( duration - b )) seconds"
 done
 sleep 2 ##longest clear buffer
-for (( j=${endno}-2;j>=${startno};j=j-2)); 
+for (( j=${endno}-step;j>=${startno};j=j-step)); 
 do
 
 	c=$SECONDS
@@ -67,7 +68,7 @@ do
 	echo "$(( duration - c )) seconds"
 done
 duration=$SECONDS
-echo ${rej},${frames}
+echo "Total $((rej)) rejected,$((frame)) frames aquistion"
 echo "Total $(( duration - a )) + $((settime1))  seconds"
 echo "average D810gg $(( ((${frames})/1+0)/(duration-a)*60 )) fpm"
 
